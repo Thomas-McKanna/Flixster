@@ -9,16 +9,18 @@ import java.util.List;
 
 public class Movie {
 
-    String backdropPath;
-    String posterPath;
-    String title;
-    String overview;
+    private String backdropPath;
+    private String posterPath;
+    private String title;
+    private String overview;
+    private Double voteAverage;
 
     public Movie(JSONObject jsonObject) throws JSONException {
         backdropPath = jsonObject.getString("backdrop_path");
         posterPath = jsonObject.getString("poster_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
+        voteAverage = jsonObject.getDouble("vote_average");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
