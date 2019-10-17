@@ -26,11 +26,11 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 
 Portrait view (movies with a rating above 7.0/10.0 are featured):
 
-<img src="flixster1.gif" width=250><br>
+<img src="https://github.com/Thomas-McKanna/Flixster/raw/master/flixter1.gif" width=250><br>
 
 Landscape view:
 
-<img src="flixster2.gif" width=250><br>
+<img src="https://github.com/Thomas-McKanna/Flixster/raw/master/flixter2.gif" width=250><br>
 
 ### Notes
 
