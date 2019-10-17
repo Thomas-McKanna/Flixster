@@ -13,7 +13,7 @@ public class Movie {
     private String posterPath;
     private String title;
     private String overview;
-    private Double voteAverage;
+    private double voteAverage;
 
     public Movie(JSONObject jsonObject) throws JSONException {
         backdropPath = jsonObject.getString("backdrop_path");
@@ -45,5 +45,9 @@ public class Movie {
 
     public String getOverview() {
         return overview;
+    }
+
+    public double getVoteAverage() {
+        return voteAverage;
     }
 }
