@@ -1,6 +1,7 @@
 package com.mckanna.flixster.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.mckanna.flixster.MovieDetailsActivity;
 import com.mckanna.flixster.R;
 import com.mckanna.flixster.models.Movie;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -84,7 +88,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tvTitle;
         TextView tvOverview;
@@ -97,6 +101,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             useBackdrop= useWide;
+
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Movie movie) {
@@ -118,6 +124,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .setDefaultRequestOptions(requestOptions)
                     .load(imageUrl)
                     .into(ivPoster);
+        }
+
+        @Override
+        public void onClick(View view) {
+            // Get item position (will return RecyclerView.NO_POSITION if item does not exist)
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                Movie movie = movies.get(position);
+                // Create an intent for the new activity
+                Intent intent = new Intent(context, MovieDetailsActivity.class);
+                // Serialize the movie using parceler
+                intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+                // Show the activity
+                context.startActivity(intent);
+            }
         }
     }
 
