@@ -12,7 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mckanna.flixster.GlideApp;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.mckanna.flixster.R;
 import com.mckanna.flixster.models.Movie;
 
@@ -25,7 +26,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public final int SMALL = 0, LARGE = 1;
 
-    public final double VOTE_THRESHOLD = 7.0;
+    public final Double VOTE_THRESHOLD = 7.0;
 
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
@@ -88,9 +89,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
-        boolean useBackdrop;
+        Boolean useBackdrop;
 
-        public ViewHolder(@NonNull View itemView, boolean useWide) {
+        public ViewHolder(@NonNull View itemView, Boolean useWide) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
@@ -109,11 +110,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 imageUrl = movie.getPosterPath();
             }
 
-            GlideApp.with(context)
-                    .load(imageUrl)
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions.placeholder(R.drawable.popcorn);
+
+            Glide.with(context)
                     // Shows a loading gif while the image loads
-                    .placeholder(R.drawable.popcorn)
-                    .fitCenter()
+                    .setDefaultRequestOptions(requestOptions)
+                    .load(imageUrl)
                     .into(ivPoster);
         }
     }
