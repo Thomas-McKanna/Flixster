@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp">
+    android:layout_marginBottom="@dimen/item_movie_margin_bottom">
 
     <ImageView
         android:id="@+id/ivPoster"
-        android:layout_width="120dp"
+        android:layout_width="@dimen/item_movie_narrow_image"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="@dimen/item_movie_margin_left"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -21,11 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/item_movie_margin_left"
+        android:layout_marginEnd="@dimen/item_movie_margin_right"
+        android:layout_marginTop="@dimen/item_movie_margin_top"
         android:layout_toEndOf="@id/ivPoster"
-        android:textSize="24sp"
+        android:textSize="@dimen/small_movie_item_text_size"
         android:textColor="@color/alabaster"
         android:textStyle="bold"
         tools:text="John Wick: Chapter 3 - Parabellum" />
@@ -35,9 +34,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/item_movie_margin_left"
+        android:layout_marginEnd="@dimen/item_movie_margin_right"
+        android:layout_marginTop="@dimen/item_movie_margin_top"
         android:layout_toEndOf="@+id/ivPoster"
         android:textColor="@color/alabaster"
         android:ellipsize="end"

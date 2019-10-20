@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
+    android:layout_marginBottom="@dimen/item_movie_margin_bottom"
     android:background="@color/lighterblack"
     android:layout_marginStart="@dimen/item_movie_margin_left"
     android:layout_marginEnd="@dimen/item_movie_margin_right"
@@ -29,8 +29,8 @@
         android:layout_below="@id/ivPoster"
         android:layout_marginStart="@dimen/item_movie_margin_left"
         android:layout_marginEnd="@dimen/item_movie_margin_right"
-        android:layout_marginTop="5dp"
-        android:textSize="26sp"
+        android:layout_marginTop="@dimen/item_movie_margin_top"
+        android:textSize="@dimen/large_movie_item_text_size"
         android:textColor="@color/alabaster"
         android:textStyle="bold"
         tools:text="John Wick: Chapter 3 - Parabellum" />
@@ -44,7 +44,7 @@
         android:layout_marginStart="@dimen/item_movie_margin_left"
         android:layout_marginEnd="@dimen/item_movie_margin_right"
         android:layout_marginBottom="@dimen/item_movie_margin_bottom"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/item_movie_margin_top"
         android:textColor="@color/alabaster"
         tools:text="Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn." />
 </RelativeLayout>

@@ -28,7 +28,7 @@ import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+
     public static final String TAG = "MainActivity";
 
     List<Movie> movies;
@@ -53,11 +53,9 @@ public class MainActivity extends AppCompatActivity {
         // Set a Layout Manager on the recycler view
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        rvMovies.addItemDecoration(itemDecoration);
+        FlixsterHttpClient client = new FlixsterHttpClient();
 
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
+        client.getNowPlayingMovies(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");

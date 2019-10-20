@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/ivPoster"
-        android:layout_width="350dp"
+        android:layout_width="@dimen/item_movie_wide_image"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -22,7 +22,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivPoster"
-        android:textSize="24sp"
+        android:textSize="@dimen/large_movie_item_text_size"
         android:textColor="@color/alabaster"
         android:textStyle="bold"
         tools:text="John Wick: Chapter 3 - Parabellum" />
