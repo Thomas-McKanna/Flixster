@@ -22,12 +22,25 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 - [x] (2pts) For popular movies (i.e. a movie voted for more than 5 stars), the full backdrop image is displayed. Otherwise, a poster image, the movie title, and overview is listed. Use Heterogenous RecyclerViews and use different ViewHolder layout files for popular movies and less popular ones.
 
 ### App Walkthough GIF
-`TODO://` Add the URL to your animated app walkthough `gif` in the image tag below, `YOUR_GIF_URL_HERE`. Make sure the gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after after adding gif)
 
-<img src="YOUR_GIF_URL_HERE" width=250><br>
+Portrait view (movies with a rating above 7.0/10.0 are featured):
+
+<img src="https://github.com/Thomas-McKanna/Flixster/raw/master/flixter1.gif" width=250><br>
+
+Landscape view:
+
+<img src="https://github.com/Thomas-McKanna/Flixster/raw/master/flixter2.gif" width=500><br>
 
 ### Notes
-Describe any challenges encountered while building the app.
+
+1. To use the full range of GlideApp features I had to make sure to use these dependencies for compatibility with androidx:
+
+```
+ implementation 'com.github.bumptech.glide:glide:4.10.0'
+ annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+```
+
+2. The https://github.com/wasabeef/recyclerview-animators repository has animations that can be applied as the user scrolls through a RecyclerView. To use it, cast your custom RecyclerView adapter to one of the adapter animation classes.
 
 ### Open-source libraries used
 
