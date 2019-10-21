@@ -11,6 +11,8 @@ import java.util.List;
 @Parcel
 public class Movie {
 
+    public static final Double VOTE_THRESHOLD = 7.5;
+
     public String backdropPath;
     public String posterPath;
     public String title;

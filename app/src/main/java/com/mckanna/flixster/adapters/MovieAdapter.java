@@ -30,8 +30,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public final int SMALL = 0, LARGE = 1;
 
-    public final Double VOTE_THRESHOLD = 7.0;
-
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
         this.movies = movies;
@@ -75,7 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        if (movies.get(position).getVoteAverage() < VOTE_THRESHOLD) {
+        if (movies.get(position).getVoteAverage() < Movie.VOTE_THRESHOLD) {
             return SMALL;
         } else {
             return LARGE;
@@ -93,6 +91,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        ImageView ivPlayIcon;
         Boolean useBackdrop;
 
         public ViewHolder(@NonNull View itemView, Boolean useWide) {
@@ -100,6 +99,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
+            ivPlayIcon = itemView.findViewById(R.id.ivPlayLogo);
             useBackdrop= useWide;
 
             itemView.setOnClickListener(this);
@@ -112,6 +112,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
             if (useBackdrop || context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 imageUrl = movie.getBackdropPath();
+                ivPlayIcon.setImageResource(R.drawable.yt_icon_mono_light);
             } else {
                 imageUrl = movie.getPosterPath();
             }
