@@ -4,8 +4,10 @@
     <dimen name="item_movie_margin_right">8dp</dimen>
     <dimen name="item_movie_margin_top">8dp</dimen>
     <dimen name="item_movie_margin_bottom">8dp</dimen>
-    <dimen name="large_movie_item_text_size">26sp</dimen>
-    <dimen name="small_movie_item_text_size">24sp</dimen>
+    <dimen name="large_text">34sp</dimen>
+    <dimen name="small_text">20sp</dimen>
     <dimen name="item_movie_wide_image">350dp</dimen>
     <dimen name="item_movie_narrow_image">120dp</dimen>
+    <dimen name="large_margin">16dp</dimen>
+    <dimen name="small_margin">16dp</dimen>
 </resources>

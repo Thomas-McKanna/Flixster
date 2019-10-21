@@ -22,7 +22,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivPoster"
-        android:textSize="@dimen/large_movie_item_text_size"
+        android:textSize="@dimen/large_text"
         android:textColor="@color/alabaster"
         android:textStyle="bold"
         tools:text="John Wick: Chapter 3 - Parabellum" />
