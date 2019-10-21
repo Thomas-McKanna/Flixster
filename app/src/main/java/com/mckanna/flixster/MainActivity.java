@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         // Set a Layout Manager on the recycler view
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
-        FlixsterHttpClient client = new FlixsterHttpClient();
+        FlixsterHttpClient client = new FlixsterHttpClient(this);
 
         client.getNowPlayingMovies(new JsonHttpResponseHandler() {
             @Override
