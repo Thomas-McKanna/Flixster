@@ -79,12 +79,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         ivBackdrop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (youtubeId != null) {
-                    Intent intent = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
-                    intent.putExtra(MovieDetailsActivity.VID_ID, youtubeId);
-
-                    MovieDetailsActivity.this.startActivity(intent);
-                }
+                launchTrailer();
             }
         });
 
@@ -102,12 +97,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
                     String site, type;
                     // Try to find a video which is on YouTube and is a Trailer
-                    for (int i = 0; i < results.length(); i++) {
+                    for (int i = results.length() - 1; i >= 0; i--) {
                         site = results.getJSONObject(i).getString("site");
                         type = results.getJSONObject(i).getString("type");
 
                         if (site.equals(WEBSITE) && type.equals(VID_TYPE)) {
                             youtubeId = results.getJSONObject(i).getString("key");
+
+                            if (movie.getVoteAverage() >= Movie.VOTE_THRESHOLD) {
+                                launchTrailer();
+                            }
+
+                            break;
                         }
                     }
                 } catch (JSONException e) {
@@ -120,5 +121,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 Log.d(TAG, "Failed to retrieve movie videos");
             }
         });
+    }
+
+    private void launchTrailer() {
+        if (youtubeId != null) {
+            Intent intent = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
+            intent.putExtra(MovieDetailsActivity.VID_ID, youtubeId);
+
+            MovieDetailsActivity.this.startActivity(intent);
+        }
     }
 }
