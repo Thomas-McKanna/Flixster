@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/raisinblack"
-    tools:context=".MovieDetailsActivity">
+    android:background="@color/raisinblack" >
+
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@color/black"
         android:id="@+id/ivBackdrop"
-        android:layout_margin="@dimen/small_margin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/ivPlayLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/yt_icon_mono_light"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ivBackdrop"
+        tools:srcCompat="@drawable/yt_icon_mono_light" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvTitle"
         android:textColor="@color/alabaster"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/ivBackdrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivBackdrop"
         android:layout_margin="@dimen/small_margin"
         android:textSize="@dimen/large_text"
+        android:textStyle="bold"
         tools:text="Title"/>
 
 
@@ -32,9 +49,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rbVoteAverage"
-        android:layout_centerHorizontal="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        android:layout_margin="@dimen/small_margin"
         android:background="@drawable/rounded_corner"
-        android:layout_below="@id/tvTitle"
         android:isIndicator="true"
         android:numStars="5"
         android:stepSize="0.5"/>
@@ -43,10 +61,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvOverview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rbVoteAverage"
+        app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/alabaster"
-        android:layout_margin="@dimen/small_margin"
+        android:padding="@dimen/small_margin"
         android:layout_below="@id/rbVoteAverage"
         tools:text="Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn." />
     />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
