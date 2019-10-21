@@ -7,15 +7,23 @@
     android:background="@color/raisinblack"
     tools:context=".MovieDetailsActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/black"
+        android:id="@+id/ivBackdrop"
+        android:layout_margin="@dimen/small_margin"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvTitle"
         android:textColor="@color/alabaster"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/large_margin"
-        android:layout_marginStart="@dimen/large_margin"
+        android:layout_below="@id/ivBackdrop"
+        android:layout_margin="@dimen/small_margin"
         android:textSize="@dimen/large_text"
         tools:text="Title"/>
 
@@ -36,7 +44,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvOverview"
         android:textColor="@color/alabaster"
-        android:padding="@dimen/small_margin"
+        android:layout_margin="@dimen/small_margin"
         android:layout_below="@id/rbVoteAverage"
         tools:text="Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn." />
     />

@@ -9,5 +9,5 @@
     <dimen name="item_movie_wide_image">350dp</dimen>
     <dimen name="item_movie_narrow_image">120dp</dimen>
     <dimen name="large_margin">16dp</dimen>
-    <dimen name="small_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
 </resources>
