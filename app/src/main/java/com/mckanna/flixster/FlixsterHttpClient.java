@@ -10,7 +10,6 @@ public class FlixsterHttpClient {
     private static final String BASE_URL = "https://api.themoviedb.org/3/";
     private static final String NOW_PLAYING_URL = "movie/now_playing";
     private static final String DETAILS_URL = "/movie/";
-    private static final String LANGUAGE = "en-US";
     private AsyncHttpClient client;
 
     // The Movie Database API key
@@ -33,7 +32,6 @@ public class FlixsterHttpClient {
         String url = getApiUrl(NOW_PLAYING_URL);
         RequestParams params = new RequestParams();
         params.put("api_key", this.TMDB_API_KEY);
-        params.put("language", LANGUAGE);
         client.get(url, params, handler);
     }
 
@@ -41,7 +39,6 @@ public class FlixsterHttpClient {
         String url = getApiUrl(DETAILS_URL + Integer.toString(id));
         RequestParams params = new RequestParams();
         params.put("api_key", this.TMDB_API_KEY);
-        params.put("language", LANGUAGE);
         client.get(url, params, handler);
     }
 
@@ -49,7 +46,13 @@ public class FlixsterHttpClient {
         String url = getApiUrl(DETAILS_URL + Integer.toString(id) + "/reviews");
         RequestParams params = new RequestParams();
         params.put("api_key", this.TMDB_API_KEY);
-        params.put("language", LANGUAGE);
+        client.get(url, params, handler);
+    }
+
+    public void getMovieVideos(Integer id, JsonHttpResponseHandler handler) {
+        String url = getApiUrl(DETAILS_URL + Integer.toString(id) + "/videos");
+        RequestParams params = new RequestParams();
+        params.put("api_key", this.TMDB_API_KEY);
         client.get(url, params, handler);
     }
 }
