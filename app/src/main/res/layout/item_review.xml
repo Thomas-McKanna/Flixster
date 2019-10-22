@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/raisinblack"
+    android:layout_marginStart="@dimen/large_margin">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/reviewerName"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:textColor="@color/alabaster"
+        android:textSize="@dimen/small_text"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Reviewer name says:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/contents"
+        android:padding="@dimen/small_margin"
+        android:textColor="@color/alabaster"
+        android:textSize="@dimen/small_text"
+        android:ellipsize="end"
+        android:maxLines="10"
+        app:layout_constraintTop_toBottomOf="@id/reviewerName"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Summertime 2016 has not been very kind to DC Comics-based personalities looking to shine consistently like their big screen Marvel Comics counterparts. Following the super-sized dud that was _Batman v. Superman: Dawn of Justice_ released a few months ago must really put some major pressure on Warner Bros. to gamble on ensuring that the presence of **Suicide Squad** does not meet the same kind of indifferent reception. Well, it turns out that although the anticipation was high for writer-director David Ayer's supervillain saga involving high-powered imprisoned rogues recruited as U.S. governmental operatives out to stop other skillful baddies (as it was for Zack Ryder's aforementioned 'Dawn of Justice') the concoction of **Suicide Squad** feels like a colorful mishmash of collective misfits laboriously taking up space in a disjointed eye candy-coated spectacle that never manages to match its intended sizzle.\r\n\r\nOne would think that the premise for **Suicide Squad** would tap into the intriguing naughtiness with more robust gumption given the collection of super-powered oddballs asked to be immediate anti-heroes in this toothless jamboree of renegade rejects. Strangely, the grim and brooding presentation of **Suicide Squad** is more of an erratic downer than a hyperactive high-wire act as intended at the creative hands of Ayer. There is no reason why this lively group of adventurous " />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

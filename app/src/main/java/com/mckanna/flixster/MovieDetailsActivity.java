@@ -1,6 +1,8 @@
 package com.mckanna.flixster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,107 +16,77 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.mckanna.flixster.adapters.DetailsAdapter;
+import com.mckanna.flixster.adapters.MovieAdapter;
 import com.mckanna.flixster.models.Movie;
+import com.mckanna.flixster.models.Review;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import okhttp3.Headers;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
     private static final String TAG = MovieDetailsActivity.class.getSimpleName();
-    private static final String WEBSITE = "YouTube";
-    private static final String VID_TYPE = "Trailer";
 
     // Intent key value
     public static final String VID_ID = "video_id";
 
     private Movie movie;
-    private String youtubeId;
+    private List<Review> reviews;
 
-    private ImageView ivBackdrop;
-    private TextView tvTitle;
-    private TextView tvOverview;
-    private TextView tvVoteCount;
-    private RatingBar rbVoteAverage;
+    private RecyclerView rvDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
 
+        reviews = new ArrayList<>();
+
         // Resolve view objects
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvOverview = (TextView) findViewById(R.id.tvOverview);
-        tvVoteCount = (TextView) findViewById(R.id.tvVotesCount);
-        rbVoteAverage = (RatingBar) findViewById(R.id.rbVoteAverage);
-        ivBackdrop = (ImageView) findViewById(R.id.ivBackdrop);
+        rvDetails = (RecyclerView) findViewById(R.id.rvDetails);
 
         // Unwrap the movie passed in via intent
         Parcelable parcel = getIntent().getParcelableExtra(Movie.class.getSimpleName());
         movie = (Movie) Parcels.unwrap(parcel);
         Log.d(TAG, String.format("Showing details for '%s'", movie.getTitle()));
 
-        // Set title and overview
-        tvTitle.setText(movie.getTitle());
-        tvOverview.setText(movie.getOverview());
+        // Create an adapter
+        final DetailsAdapter detailsAdapter = new DetailsAdapter(this, movie, reviews);
 
-        // Set vote count
-        tvVoteCount.setText(movie.getVoteCount().toString() + " votes");
+        // Make animation adapter and set fade in to take 1 second
+//        AlphaInAnimationAdapter movieAnimAdapter = new AlphaInAnimationAdapter(movieAdapter);
+//        movieAnimAdapter.setDuration(1000);
 
-        // Set rating
-        float voteAverage = movie.getVoteAverage().floatValue() / 2.0f;
-        rbVoteAverage.setRating(voteAverage);
+        // Set the adapter on the recycler view
+        rvDetails.setAdapter(detailsAdapter);
 
-        // Set the backdrop
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.drawable.popcorn);
+        // Set a Layout Manager on the recycler view
+        rvDetails.setLayoutManager(new LinearLayoutManager(this));
 
-        Glide.with(this)
-                // Shows a loading gif while the image loads
-                .setDefaultRequestOptions(requestOptions)
-                .load(movie.getBackdropPath())
-                .into(ivBackdrop);
+        detailsAdapter.notifyItemChanged(0);
 
-        // Set OnClickListener for ImageView
-        ivBackdrop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchTrailer();
-            }
-        });
-
-        // Set the YouTube ID to initially be null
-        youtubeId = null;
-
-        // Try to fetch the YouTube ID using TMDB API
+        // Get reviews for this movie
         FlixsterHttpClient client = new FlixsterHttpClient(this);
-        client.getMovieVideos(movie.id, new JsonHttpResponseHandler() {
+
+        client.getMovieReviews(movie.id, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
+                Log.d(TAG, "onSuccess");
                 JSONObject jsonObject = json.jsonObject;
                 try {
                     JSONArray results = jsonObject.getJSONArray("results");
-
-                    String site, type;
-                    // Try to find a video which is on YouTube and is a Trailer
-                    for (int i = results.length() - 1; i >= 0; i--) {
-                        site = results.getJSONObject(i).getString("site");
-                        type = results.getJSONObject(i).getString("type");
-
-                        if (site.equals(WEBSITE) && type.equals(VID_TYPE)) {
-                            youtubeId = results.getJSONObject(i).getString("key");
-
-                            if (movie.getVoteAverage() >= Movie.VOTE_THRESHOLD) {
-                                launchTrailer();
-                            }
-
-                            break;
-                        }
-                    }
+                    Log.i(TAG, "Results:" + results.toString());
+                    reviews.addAll(Review.fromJsonArray(results));
+                    detailsAdapter.notifyItemRangeChanged(1, reviews.size());
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception", e);
                 }
@@ -122,17 +94,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.d(TAG, "Failed to retrieve movie videos");
+                Log.d(TAG, "onFailure");
             }
         });
-    }
-
-    private void launchTrailer() {
-        if (youtubeId != null) {
-            Intent intent = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
-            intent.putExtra(MovieDetailsActivity.VID_ID, youtubeId);
-
-            MovieDetailsActivity.this.startActivity(intent);
-        }
     }
 }

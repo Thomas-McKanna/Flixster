@@ -47,6 +47,7 @@ public class FlixsterHttpClient {
 
     public void getMovieReviews(Integer id, JsonHttpResponseHandler handler) {
         String url = getApiUrl(DETAILS_URL + Integer.toString(id) + "/reviews");
+        Log.d(TAG, url);
         RequestParams params = new RequestParams();
         params.put("api_key", this.TMDB_API_KEY);
         client.get(url, params, handler);
@@ -54,7 +55,6 @@ public class FlixsterHttpClient {
 
     public void getMovieVideos(Integer id, JsonHttpResponseHandler handler) {
         String url = getApiUrl(DETAILS_URL + Integer.toString(id) + "/videos");
-        Log.d(TAG, url);
         RequestParams params = new RequestParams();
         params.put("api_key", this.TMDB_API_KEY);
         client.get(url, params, handler);
