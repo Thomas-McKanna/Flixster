@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/raisinblack" >
+    android:background="@color/raisinblack">
 
 
     <ImageView
@@ -14,8 +13,8 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -23,50 +22,64 @@
         android:id="@+id/ivPlayLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/yt_icon_mono_light"
         android:scaleX="0.5"
         android:scaleY="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/yt_icon_mono_light"
         app:layout_constraintBottom_toBottomOf="@id/ivBackdrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@drawable/yt_icon_mono_light" />
 
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvTitle"
+        android:padding="@dimen/small_margin"
         android:textColor="@color/alabaster"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivBackdrop"
-        android:layout_margin="@dimen/small_margin"
         android:textSize="@dimen/large_text"
         android:textStyle="bold"
-        tools:text="Title"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivBackdrop"
+        tools:text="Title" />
+
+    <TextView
+        android:id="@+id/tvVotesCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:textColor="@color/alabaster"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintBottom_toBottomOf="@+id/rbVoteAverage"
+        app:layout_constraintStart_toEndOf="@+id/rbVoteAverage"
+        app:layout_constraintTop_toTopOf="@+id/rbVoteAverage"
+        tools:text="12345 votes" />
 
 
     <RatingBar
+        android:id="@+id/rbVoteAverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/rbVoteAverage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
         android:layout_margin="@dimen/small_margin"
         android:background="@drawable/rounded_corner"
         android:isIndicator="true"
         android:numStars="5"
-        android:stepSize="0.5"/>
+        android:stepSize="0.5"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <TextView
+        android:id="@+id/tvOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvOverview"
+        android:layout_below="@id/rbVoteAverage"
+        android:padding="@dimen/small_margin"
+        android:textColor="@color/alabaster"
+        android:textSize="@dimen/small_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rbVoteAverage"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/alabaster"
-        android:padding="@dimen/small_margin"
-        android:layout_below="@id/rbVoteAverage"
         tools:text="Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin’s guild, the High Table, John Wick is excommunicado, but the world’s most ruthless hit men and women await his every turn." />
     />
 

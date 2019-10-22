@@ -2,7 +2,6 @@ package com.mckanna.flixster;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -39,8 +38,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
     private ImageView ivBackdrop;
     private TextView tvTitle;
     private TextView tvOverview;
+    private TextView tvVoteCount;
     private RatingBar rbVoteAverage;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +49,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         // Resolve view objects
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvOverview = (TextView) findViewById(R.id.tvOverview);
+        tvVoteCount = (TextView) findViewById(R.id.tvVotesCount);
         rbVoteAverage = (RatingBar) findViewById(R.id.rbVoteAverage);
         ivBackdrop = (ImageView) findViewById(R.id.ivBackdrop);
 
@@ -62,6 +62,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
 
+        // Set vote count
+        tvVoteCount.setText(movie.getVoteCount().toString() + " votes");
+
+        // Set rating
         float voteAverage = movie.getVoteAverage().floatValue() / 2.0f;
         rbVoteAverage.setRating(voteAverage);
 
