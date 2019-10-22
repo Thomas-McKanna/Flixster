@@ -6,8 +6,7 @@
     <dimen name="item_movie_margin_bottom">8dp</dimen>
     <dimen name="large_text">34sp</dimen>
     <dimen name="small_text">20sp</dimen>
-    <dimen name="item_movie_wide_image">350dp</dimen>
-    <dimen name="item_movie_narrow_image">120dp</dimen>
+    <dimen name="movie_details_reviews_height">350dp</dimen>
     <dimen name="large_margin">16dp</dimen>
     <dimen name="small_margin">8dp</dimen>
 </resources>

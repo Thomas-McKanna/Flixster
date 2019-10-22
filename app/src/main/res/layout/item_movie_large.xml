@@ -8,7 +8,7 @@
     android:layout_marginStart="@dimen/item_movie_margin_left"
     android:layout_marginEnd="@dimen/item_movie_margin_right"
     android:layout_marginBottom="@dimen/item_movie_margin_bottom"
-    android:background="@color/lighterblack">
+    android:background="@drawable/featured_movie" >
 
     <ImageView
         android:id="@+id/ivPoster"
