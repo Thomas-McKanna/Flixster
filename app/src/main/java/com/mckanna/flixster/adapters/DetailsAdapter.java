@@ -3,6 +3,7 @@ package com.mckanna.flixster.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -218,7 +219,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    public class ReviewViewHolder extends RecyclerView.ViewHolder {
+    public class ReviewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
         private TextView tvName;
         private TextView tvContents;
@@ -230,6 +231,8 @@ public class DetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             tvName = itemView.findViewById(R.id.reviewerName);
             tvContents = itemView.findViewById(R.id.contents);
+
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Review review) {
@@ -239,5 +242,12 @@ public class DetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             url = review.getUrl();
         }
 
+        @Override
+        public void onClick(View view) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            if (browserIntent.resolveActivity(context.getPackageManager()) != null) {
+                context.startActivity(browserIntent);
+            }
+        }
     }
 }
